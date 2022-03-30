@@ -26,5 +26,9 @@ server.listen(port, function(error){
     }
 })
 
+fs.writeFile('result.txt', 'This is my text', function (err) {
+    if (err) throw err;               console.log('Results Received');
+  }); 
+
 
 
