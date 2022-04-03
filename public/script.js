@@ -10,6 +10,14 @@ let dispensa = [];
 let podeEditar = true;
 console.log("podeEditar:" + podeEditar);
 
+//obs.: atente se ao embed no link do youtube 
+//https://stackoverflow.com/questions/25661182/embed-youtube-video-refused-to-display-in-a-frame-because-it-set-x-frame-opti
+
+let listaConteudo = [
+  {"id":"1","nome":"Fundamentos do IoT","conteudo":"https://www.youtube.com/embed/LlhmzVL5bm8","tipo":"video"},
+  {"id":"2","nome":"Introdução a Cloud Computing","conteudo":"Veja o link https://maismulheres.tech/p/introducao-a-cloud-computing","tipo":"texto"}
+]
+
 
 onload = () => { 
   // carrega os recursos salvos
@@ -64,8 +72,31 @@ onload = () => {
   };
 
   document.querySelector('#btnSalvar').onclick = () => {
-    ativa('login');
+    let email = document.querySelector('#email');
+    let username = document.querySelector('#username');
+    let password1 = document.querySelector('#password1');
+    if(email.value!= "" && username.value!=""&&password1.value!=""){
+      ativa('login');
+    }    
   };
+
+  document.querySelector('#btnLogin').onclick = () => {
+    let login = document.querySelector('#loginUsuario');
+    let senha = document.querySelector('#loginSenha');
+
+    //Busca no db pelo login e verifica senha
+    let dbSenha = 'a';
+    if(senha.value==dbSenha){
+      ativa('telaInicial');
+      console.log("LOGADO"); 
+    }
+       
+  };
+
+  mostraListaConteudo();
+  console.log("MOSTRA");
+
+  
 
   // Formulario add lista de compras 
   document.querySelector('#addCompra').onclick = () => {
@@ -1190,5 +1221,58 @@ const convertDate = (date) => {
   let newdate = dateSplit[2] + "/" + dateSplit[1] + "/" + dateSplit[0].slice(2, 4);
   return newdate;
 }
+
+const mostraListaConteudo = () => {
+  const lc = document.querySelector('#listaConteudo');
+  lc.innerHTML = '';
+  //O vetor global lista conteudo será carregado do db
+  listaConteudo.forEach((i) => {
+    // cria o elemento da lista
+    let lista = document.createElement('li');
+
+    // cria o botao de alterar do elemento
+    let btnAlterar = document.createElement('button');
+    btnAlterar.innerHTML = '<img src="imagens\\conteudo\\conteudo'+i.id+'.jpg" />';
+    btnAlterar.setAttribute('id', "btnListaCompra" + i.id);
+    btnAlterar.setAttribute('class', 'thumb');
+    lista.appendChild(btnAlterar);
+
+    let label = document.createElement('label');
+    label.innerHTML = i.nome;
+    label.setAttribute('data-id', i.id);
+    label.setAttribute('class', 'blockLabel mvRight2'); // aumenta a area para clicar no label
+    lista.appendChild(label);
+
+    
+
+    label.onclick = () => {
+      // muda o nome da tela dos produtos
+      let tituloCompra = document.querySelector('#tituloConteudo');
+      tituloCompra.innerHTML = i.nome;
+      // mostra a tela produtosCompra
+      ativa('telaConteudo');
+      // atualiza o idLista
+      idLista = i.id;
+      // carrega os produtos
+      mostraConteudo(i.id,i.tipo,i.conteudo);
+    };
+
+    btnAlterar.onclick = () => {
+      
+    };
+
+    lc.appendChild(lista);
+
+  }); // fim do for
+}; // fim mostraListaConteudo
+
+const mostraConteudo = (id,tipo,conteudo) => {
+  let verConteudo = document.querySelector('#verConteudo');
+      if(tipo == "video"){
+        verConteudo.innerHTML = '<iframe width="560" height="315" src="'+conteudo+'"'+
+        'title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;'+
+        'encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+      }
+};
 
 navigator.serviceWorker.register('./dispensa-sw.js');

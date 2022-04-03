@@ -5,8 +5,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-var http = require('http');
-var server = http.createServer(app);
+var https = require('https');
+var server = https.createServer(app);
 
 // Static Files
 app.use(express.static('public'));
@@ -35,8 +35,18 @@ app.use(express.urlencoded());
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 app.post('/', function(req, res) {
-    console.log(req.body.email);
-    //res.sendStatus(200);
+    let usuario = {
+        id: Math.random().toString().replace('0.', ''), 
+        email: req.body.email,
+        username: req.body.username,
+        senha: req.body.senha, 
+    };
+     
+    let data = JSON.stringify(usuario);
+    fs.appendFile('./db/usuario.json', data, function (err) {
+        if (err) throw err;               console.log('Usuario Salvo');
+    });
+    res.redirect('back'); 
     teste();
 });
 

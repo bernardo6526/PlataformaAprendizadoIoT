@@ -453,6 +453,14 @@
     margin-top: 7rem;
   }
 
+  .mvRight1{
+    margin-left: 1rem;
+  }
+
+  .mvRight2{
+    margin-left: 2rem;
+  }
+
   .mvRight3{
     margin-left: 3rem;
   }
@@ -497,5 +505,24 @@
     text-align: center;
     overflow-wrap: break-word;
     font-size: 0.8rem;
+  }
+
+  .thumb{
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .thumb img{
+    width: 100%;
+    height: auto;
+  }
+
+  .conteudo{
+    width: 20rem;
+  }
+
+  .conteudo iframe{
+    width: 100%;
+    height: auto;
   }
   

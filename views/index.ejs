@@ -67,11 +67,11 @@
             </div>
             <div class="field mvLeft3" id="divUsername">
                 <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
-                <input id="username" type="text" autocomplete="off" value="" placeholder="Nome Usuário" required/>
+                <input id="username" type="text" autocomplete="off" value="" placeholder="Nome Usuário" name="username" required/>
             </div>
             <div class="field mvLeft3" id="divSenha">
                 <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
-                <input id="password1" type="password" autocomplete="off" value="" placeholder="Senha" required/>
+                <input id="password1" type="password" autocomplete="off" value="" placeholder="Senha" name="senha" required/>
             </div>
             <div class="field mvLeft3" id="divSenha">
                 <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
@@ -79,6 +79,28 @@
             </div>
             <input type="submit" id="btnSalvar" class="button primary mvRight5" value="Salvar">
         </form>    
+    </div>
+  </div>
+
+  <div id="telaInicial" class="component hidden">
+    <div class="componentHeader">
+      <h1 class="componentTitle mvLeft2">Início</h1>
+    </div>
+    <div class="componentContent">
+      <ul class="list mt4" id="listaConteudo">
+      </ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="telaConteudo" class="component hidden">
+    <div class="componentHeader">
+      <h1 class="componentTitle mvLeft2" id="tituloConteudo"></h1>
+    </div>
+    <div class="componentContent">
+      <p class="list mt4 conteudo" id="verConteudo">
+      </p>
+      </div>
     </div>
   </div>
 
