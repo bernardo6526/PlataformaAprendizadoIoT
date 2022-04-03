@@ -10,6 +10,7 @@
   body {
     padding-top: 5rem;
   }
+
   
   .hidden {
     display: none;
@@ -450,6 +451,18 @@
 
   .mt7 {
     margin-top: 7rem;
+  }
+
+  .mvRight3{
+    margin-left: 3rem;
+  }
+
+  .mvRight4{
+    margin-left: 4rem;
+  }
+
+  .mvRight5{
+    margin-left: 5rem;
   }
 
   .mvLeft1{

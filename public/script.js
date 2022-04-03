@@ -11,7 +11,7 @@ let podeEditar = true;
 console.log("podeEditar:" + podeEditar);
 
 
-onload = () => {
+onload = () => { 
   // carrega os recursos salvos
   console.log("CARREGUEI");
   const lc = JSON.parse(localStorage.getItem('listasDeCompras'));
@@ -58,6 +58,14 @@ onload = () => {
     ativa('tela2');
   };
   // NavBar ---------------------------------------------
+
+  document.querySelector('#btnSignup').onclick = () => {
+    ativa('signup');
+  };
+
+  document.querySelector('#btnSalvar').onclick = () => {
+    ativa('login');
+  };
 
   // Formulario add lista de compras 
   document.querySelector('#addCompra').onclick = () => {
