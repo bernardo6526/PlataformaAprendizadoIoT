@@ -60,7 +60,7 @@ onload = () => {
 
   // NavBar ---------------------------------------------
   document.querySelector('#tab1').onclick = () => {
-    ativa('tela1');
+    ativa('telaInicial');
   };
   document.querySelector('#tab2').onclick = () => {
     ativa('tela2');
@@ -88,6 +88,7 @@ onload = () => {
     let dbSenha = 'a';
     if(senha.value==dbSenha){
       ativa('telaInicial');
+      ativaNavBar();
       console.log("LOGADO"); 
     }
        
@@ -382,6 +383,10 @@ const ativa = (comp) => {
   let listaDeTelas = document.querySelectorAll('body > .component');
   listaDeTelas.forEach((c) => c.classList.add('hidden'));
   document.querySelector('#' + comp).classList.remove('hidden');
+};
+
+const ativaNavBar = () =>{
+  document.querySelector('#tab1').classList.remove('hidden');
 };
 
 const mostraListasCompras = () => {
@@ -1272,6 +1277,9 @@ const mostraConteudo = (id,tipo,conteudo) => {
         verConteudo.innerHTML = '<iframe width="560" height="315" src="'+conteudo+'"'+
         'title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;'+
         'encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+      }
+      if(tipo =="texto"){
+        verConteudo.innerHTML = conteudo;
       }
 };
 
