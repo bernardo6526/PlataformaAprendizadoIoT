@@ -63,7 +63,7 @@ onload = () => {
     ativa('telaInicial');
   };
   document.querySelector('#tab2').onclick = () => {
-    ativa('tela2');
+    ativa('telaPerfil');
   };
   // NavBar ---------------------------------------------
 
@@ -387,6 +387,7 @@ const ativa = (comp) => {
 
 const ativaNavBar = () =>{
   document.querySelector('#tab1').classList.remove('hidden');
+  document.querySelector('#tab2').classList.remove('hidden');
 };
 
 const mostraListasCompras = () => {
@@ -859,7 +860,7 @@ const mostraProdutosCompra = () => {
 
 const mostraDispensa = () => {
   // pega o conteudo que sera preenchido
-  const di = document.querySelector('#dispensa');
+  const di = document.querySelector('#telaPerfil');
   di.innerHTML = '';
   // itera o vetor de dispensa
   dispensa.forEach((i) => {
