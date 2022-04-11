@@ -6,6 +6,7 @@ const app = express()
 const port = 3000
 
 var https = require('https');
+const { Console } = require('console');
 var server = https.createServer(app);
 
 // Static Files
@@ -41,9 +42,36 @@ app.post('/', function(req, res) {
         username: req.body.username,
         senha: req.body.senha, 
     };
-     
+
+    let json = fs.readFileSync('./db/usuario.json', 'utf8');
+
+    json = json.split("\n");
+
+    let obj = [];
+    try{
+        for(i=0;i<json.length;i++){
+            json[i] = JSON.stringify(json[i]);
+            console.log(json[i]);
+            let new_obj = JSON.parse(json[i]);
+            console.log(new_obj.username);
+            obj = [...obj,new_obj];
+        }
+    }catch(Exception){
+        console.log(Exception);
+    }
+    
+    obj = [...obj,usuario];
+
+    console.log('HI');
+    for(i=0;i++;i<obj.length){
+        console.log(obj[i].username);
+    }
+
+    console.log("my object: %o", obj);
+
     let data = JSON.stringify(usuario);
-    fs.appendFile('./db/usuario.json', data, function (err) {
+
+    fs.appendFile('./db/usuario.json', data+"\n", function (err) {
         if (err) throw err;               console.log('Usuario Salvo');
     });
     res.redirect('back'); 
@@ -56,9 +84,6 @@ var teste = function (){
     console.log('FOISE');
 }
 
-fs.writeFile('result.txt', 'This is my text', function (err) {
-    if (err) throw err;               console.log('Results Received');
-}); 
 
 
 
