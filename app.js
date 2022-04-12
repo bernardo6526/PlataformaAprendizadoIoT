@@ -9,6 +9,8 @@ var https = require('https');
 const { Console } = require('console');
 var server = https.createServer(app);
 
+var login;
+
 // Static Files
 app.use(express.static('public'));
 // Specific folder example
@@ -35,7 +37,7 @@ app.listen(port, () => console.info(`App listening on port ${port}`))
 app.use(express.urlencoded());
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
-app.post('/', function(req, res) {
+app.post('/signup', function(req, res) {
     let usuario = {
         id: Math.random().toString().replace('0.', ''), 
         email: req.body.email,
@@ -64,6 +66,19 @@ app.post('/', function(req, res) {
     });
     res.redirect('back'); 
     teste();
+});
+
+app.post('/login', function(req, res) {
+    let usuario = {
+        id: Math.random().toString().replace('0.', ''), 
+        login: req.body.login,
+        senha: req.body.loginpwd
+    };
+
+    //let inputNome = document.getElementById('loginUsuario');
+    //inputNome.style.borderColor = '#8f9799';
+    res.render('Main',{name:usuario.login}) ;
+    console.log("USUARIO LOGADO: "+usuario.login);
 });
 
 server.listen(process.env.PORT, process.env.IP);

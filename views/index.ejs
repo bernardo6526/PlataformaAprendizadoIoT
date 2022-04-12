@@ -31,18 +31,21 @@
     </div>
   </nav>
 
+  <h1><%= name %></h1>
+
   <div id="login" class="component">
         <div class="componentHeader">
             <h1>Login</h1>
         </div>    
         <div class="componentContent">
+          <form method="post" action="/login">
                 <div class="field mvLeft3" id="divUsername">
                     <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
-                    <input id="loginUsuario" type="text" autocomplete="off" value="" placeholder="Nome Usuário"/>
+                    <input id="loginUsuario" type="text" autocomplete="off" value="" name="login" placeholder="Nome Usuário"/>
                 </div>
                 <div class="field mvLeft3" id="divSenha">
                     <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
-                    <input id="loginSenha" type="password" autocomplete="off" value="" placeholder="Senha" />
+                    <input id="loginSenha" type="password" autocomplete="off" value="" name="loginpwd" placeholder="Senha" />
                 </div>
                 <button id="btnLogin" class="button primary mvRight5">
                 Entrar
@@ -50,6 +53,7 @@
                 <button id="btnSignup" class="button primary">
                     Registrar-se
                 </button>
+           </form>      
         </div>
   </div>
 
@@ -58,7 +62,7 @@
         <h1>Registrar-se</h1>
     </div>    
     <div class="componentContent">
-        <form method="post" action="/">
+        <form method="post" action="/signup">
             <div class="field mvLeft3" id="divEmail">
                 <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
                 <input id="email" type="text" autocomplete="off" value="" placeholder="Email" name="email" required/>
