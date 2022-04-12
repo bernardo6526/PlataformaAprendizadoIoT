@@ -48,24 +48,12 @@ app.post('/', function(req, res) {
     json = json.split("\n");
 
     let obj = [];
-    try{
-        for(i=0;i<json.length;i++){
-            json[i] = JSON.stringify(json[i]);
-            console.log(json[i]);
-            let new_obj = JSON.parse(json[i]);
-            console.log(new_obj.username);
-            obj = [...obj,new_obj];
-        }
-    }catch(Exception){
-        console.log(Exception);
+    for(i=0;i<json.length-1;i++){ // length-1 ignore extra line
+        let new_obj = JSON.parse(json[i]);
+        obj = [...obj,new_obj];
     }
     
     obj = [...obj,usuario];
-
-    console.log('HI');
-    for(i=0;i++;i<obj.length){
-        console.log(obj[i].username);
-    }
 
     console.log("my object: %o", obj);
 
