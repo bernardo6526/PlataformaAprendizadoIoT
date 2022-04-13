@@ -45,7 +45,10 @@
             (typeof listaConteudo != "undefined" ? listaConteudo : "")
             arr = [1,2,3];
             listaConteudo.forEach((item) => { %>
-            <li><%= item.nome %></li>
+            <li>
+                <img src="imagens\conteudo\conteudo<%=item.id%>.jpg" class = "thumb"/>
+                <%= item.nome %>
+            </li>
         <% }) %>
       </ul>
       </div>

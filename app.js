@@ -82,11 +82,21 @@ app.post('/login', function(req, res) {
 
     //let inputNome = document.getElementById('loginUsuario');
     //inputNome.style.borderColor = '#8f9799';
-    
-    res.render('home',{name:usuario.login}) ;
-    res.render('home',{listaConteudo:getObj('./db/conteudo.json')}) ;
-    res.render('home.ejs');
-    console.log("USUARIO LOGADO: "+usuario.login);
+    usuarios = getObj('usuario.json');
+    acheiUser = false;
+    for(i=0;i<usuarios.length-1;i++){
+        if(usuarios[i].email == usuario.login && usuarios[i].senha == usuario.senha){
+            acheiUser = true;
+            break;
+        }
+    }
+    if(acheiUser){
+        res.render('home',{name:usuario.login,listaConteudo:getObj('conteudo.json')}) ;
+        res.render('home.ejs');
+        console.log("USUARIO LOGADO: "+usuario.login);
+    }else{
+        console.log("Erro ao logar");
+    }
 });
 
 server.listen(process.env.PORT, process.env.IP);
@@ -96,6 +106,7 @@ var teste = function (){
 }
 
 var getObj = function (path){
+    path = './db/'+ path;
     let json = fs.readFileSync(path, 'utf8');
 
     json = json.split("\n");
@@ -112,6 +123,7 @@ var getObj = function (path){
 }
 
 var saveJSON = function (obj,path){
+    path = './db/'+ path;
     let data = JSON.stringify(obj);
     fs.appendFile(path, data+"\n", function (err) {
         if (err) throw err;               console.log('Obj Salvo em:'+path);
