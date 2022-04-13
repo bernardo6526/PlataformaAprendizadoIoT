@@ -37,6 +37,11 @@ app.listen(port, () => console.info(`App listening on port ${port}`))
 app.use(express.urlencoded());
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
+
+app.post('/gosign', function(req, res) {
+    res.render('signup.ejs') ;
+});
+
 app.post('/signup', function(req, res) {
     let usuario = {
         id: Math.random().toString().replace('0.', ''), 
@@ -64,7 +69,7 @@ app.post('/signup', function(req, res) {
     fs.appendFile('./db/usuario.json', data+"\n", function (err) {
         if (err) throw err;               console.log('Usuario Salvo');
     });
-    res.redirect('back'); 
+    res.render('index.ejs') ;
     teste();
 });
 
@@ -77,7 +82,9 @@ app.post('/login', function(req, res) {
 
     //let inputNome = document.getElementById('loginUsuario');
     //inputNome.style.borderColor = '#8f9799';
-    res.render('Main',{name:usuario.login}) ;
+    
+    res.render('home',{name:usuario.login}) ;
+    res.render('home.ejs');
     console.log("USUARIO LOGADO: "+usuario.login);
 });
 

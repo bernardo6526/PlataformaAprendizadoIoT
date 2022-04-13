@@ -1,0 +1,51 @@
+<!doctype html>
+
+<head lang="pt-BR">
+  <title>Plataforma Aprendizado IoT</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials" />
+  <link rel="icon" type="image/png" href="/imagens/icones/cookiejarfavicon.ico" />
+  <link rel="stylesheet" href="./estilo.css" />
+  <script src="./script.js"></script>
+  
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="blue">
+  <meta name="apple-mobile-web-app-title" content="Gerenciador de Dispensa">
+  <link rel="apple-touch-icon" sizes="72x72" href="/imagens/icones/cookiejar72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/imagens/icones/cookiejar144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/imagens/icones/cookiejar152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/imagens/icones/cookiejar180.png">
+</head>
+
+<body>
+  <header class="headerBar dark">
+    <div class="cookieImg"><img src="imagens/icones/cookiejar72.png"></div>
+    <div class="appName left">Plataforma Aprendizado</div>
+  </header>
+  <nav id ="nav" class="navBar bottom">
+    <div class="buttonGroup">
+      <button id="tab1" class="button tab" for="telaInicial">Início</button>
+      <button id="tab2" class="button tab" for="telaPerfil">Perfil</button>      
+    </div>
+  </nav>
+
+  <nav id ="nav2" class="navBar">
+    <h1><%= (typeof name != "undefined" ? name : "") %></h1>
+  </nav>
+
+  <div id="telaInicial" class="component">
+    <div class="componentHeader">
+      <h1 class="componentTitle mvLeft2">Início</h1>
+    </div>
+    <div class="componentContent">
+      <ul class="list mt4" id="listaConteudo">
+        <% arr = [1,2,3];
+            arr.forEach((item) => { %>
+            <li><%= item %></li>
+          <% }) %>
+      </ul>
+      </div>
+    </div>
+</body>

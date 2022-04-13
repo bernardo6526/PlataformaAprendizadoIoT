@@ -1,0 +1,60 @@
+<!doctype html>
+
+<head lang="pt-BR">
+  <title>Plataforma Aprendizado IoT</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials" />
+  <link rel="icon" type="image/png" href="/imagens/icones/cookiejarfavicon.ico" />
+  <link rel="stylesheet" href="./estilo.css" />
+  <script src="./script.js"></script>
+  
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="blue">
+  <meta name="apple-mobile-web-app-title" content="Gerenciador de Dispensa">
+  <link rel="apple-touch-icon" sizes="72x72" href="/imagens/icones/cookiejar72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/imagens/icones/cookiejar144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/imagens/icones/cookiejar152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/imagens/icones/cookiejar180.png">
+</head>
+
+<body>
+  <header class="headerBar dark">
+    <div class="cookieImg"><img src="imagens/icones/cookiejar72.png"></div>
+    <div class="appName left">Plataforma Aprendizado</div>
+  </header>
+  <nav id ="nav" class="navBar bottom">
+    <div class="buttonGroup">
+      <button id="tab1" class="button tab hidden" for="telaInicial">Início</button>
+      <button id="tab2" class="button tab hidden" for="telaPerfil">Perfil</button>      
+    </div>
+  </nav>
+
+  <div id="signup" class="component">
+    <div class="componentHeader">
+        <h1>Registrar-se</h1>
+    </div>    
+    <div class="componentContent">
+        <form method="post" action="/signup">
+            <div class="field mvLeft3" id="divEmail">
+                <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
+                <input id="email" type="text" autocomplete="off" value="" placeholder="Email" name="email" required/>
+            </div>
+            <div class="field mvLeft3" id="divUsername">
+                <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
+                <input id="username" type="text" autocomplete="off" value="" placeholder="Nome Usuário" name="username" required/>
+            </div>
+            <div class="field mvLeft3" id="divSenha">
+                <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
+                <input id="password1" type="password" autocomplete="off" value="" placeholder="Senha" name="senha" required/>
+            </div>
+            <div class="field mvLeft3" id="divSenha">
+                <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
+                <input id="password2" type="password" autocomplete="off" value="" placeholder="Confirmar Senha" required/>
+            </div>
+            <input type="submit" id="btnSalvar" class="button primary mvRight5" value="Salvar">
+        </form>    
+    </div>
+  </div>
+</body>
