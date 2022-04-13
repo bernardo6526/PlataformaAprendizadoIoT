@@ -84,6 +84,7 @@ app.post('/login', function(req, res) {
     //inputNome.style.borderColor = '#8f9799';
     
     res.render('home',{name:usuario.login}) ;
+    res.render('home',{listaConteudo:getObj('./db/conteudo.json')}) ;
     res.render('home.ejs');
     console.log("USUARIO LOGADO: "+usuario.login);
 });
@@ -94,6 +95,28 @@ var teste = function (){
     console.log('FOISE');
 }
 
+var getObj = function (path){
+    let json = fs.readFileSync(path, 'utf8');
+
+    json = json.split("\n");
+
+    let obj = [];
+    for(i=0;i<json.length-1;i++){ // length-1 ignore extra line
+        let new_obj = JSON.parse(json[i]);
+        obj = [...obj,new_obj];
+    }
+    
+    console.log("my object: %o", obj);
+
+    return obj;
+}
+
+var saveJSON = function (obj,path){
+    let data = JSON.stringify(obj);
+    fs.appendFile(path, data+"\n", function (err) {
+        if (err) throw err;               console.log('Obj Salvo em:'+path);
+    });
+}
 
 
 

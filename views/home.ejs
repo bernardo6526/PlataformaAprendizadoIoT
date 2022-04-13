@@ -41,10 +41,12 @@
     </div>
     <div class="componentContent">
       <ul class="list mt4" id="listaConteudo">
-        <% arr = [1,2,3];
-            arr.forEach((item) => { %>
-            <li><%= item %></li>
-          <% }) %>
+        <%  
+            (typeof listaConteudo != "undefined" ? listaConteudo : "")
+            arr = [1,2,3];
+            listaConteudo.forEach((item) => { %>
+            <li><%= item.nome %></li>
+        <% }) %>
       </ul>
       </div>
     </div>
