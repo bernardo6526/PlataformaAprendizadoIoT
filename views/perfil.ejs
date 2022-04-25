@@ -30,7 +30,7 @@
             <button id="tab1" class="button tab" for="telaInicial">Início</button>
         </div>
       </form>
-      <form class = "fit" method="post" action="/profile">
+      <form class = "fit" method="post" action="/login">
         <div class="buttonGroup">   
           <button id="tab2" class="button tab" for="telaPerfil">Perfil</button>
         </div>
@@ -38,18 +38,17 @@
   </nav>
 
   <nav id ="nav2" class="navBar">
-    <h1 class="blockLabel center">Olá <%= (typeof name != "undefined" ? name : "") %></h1>
+    <h1 class="blockLabel center"><%= (typeof name != "undefined" ? name : "") %></h1>
   </nav>
 
   <div id="telaInicial" class="component">
     <div class="componentHeader">
-      <h1 class="componentTitle mvLeft2">Início</h1>
+      <h1 class="componentTitle mvLeft2">Seus conteúdos</h1>
     </div>
     <div class="componentContent">
       <ul class="list mt4" id="listaConteudo">
         <%  
             (typeof listaConteudo != "undefined" ? listaConteudo : "")
-            arr = [1,2,3];
             listaConteudo.forEach((item) => { %>
             <li>
                 <img src="imagens\conteudo\conteudo<%=item.id%>.jpg" class = "thumb"/>

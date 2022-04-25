@@ -9,7 +9,9 @@ var https = require('https');
 const { Console } = require('console');
 var server = https.createServer(app);
 
-var login;
+var logado = false;
+var user;
+var id_user;
 
 // Static Files
 app.use(express.static('public'));
@@ -25,6 +27,7 @@ app.set('view engine', 'ejs');
 // Navigation
 app.get('', (req, res) => {
     res.render('index', { text: 'Hey' })
+    logado=false;
 })
 
 app.get('/about', (req, res) => {
@@ -38,8 +41,9 @@ app.use(express.urlencoded());
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
+
 app.post('/gosign', function(req, res) {
-    res.render('signup.ejs') ;
+    res.render('signup.ejs');
 });
 
 app.post('/signup', function(req, res) {
@@ -84,19 +88,35 @@ app.post('/login', function(req, res) {
     //inputNome.style.borderColor = '#8f9799';
     usuarios = getObj('usuario.json');
     acheiUser = false;
-    for(i=0;i<usuarios.length-1;i++){
+    for(i=0;i<usuarios.length;i++){
+        console.log('SENHA INSERIDA:'+ usuario.senha);
+        console.log('SENHA REAL:'+ usuarios[i].senha);
         if(usuarios[i].email == usuario.login && usuarios[i].senha == usuario.senha){
             acheiUser = true;
+            id_user = usuarios[i].id;
             break;
         }
     }
-    if(acheiUser){
-        res.render('home',{name:usuario.login,listaConteudo:getObj('conteudo.json')}) ;
+    if(acheiUser || logado){
+        if(!logado){ 
+            user = usuario.login;
+        }
+        logado = true;
+        res.render('home',{name:user,listaConteudo:getObj('conteudo.json')}) ;
         res.render('home.ejs');
-        console.log("USUARIO LOGADO: "+usuario.login);
+        console.log("USUARIO LOGADO: "+user);
     }else{
         console.log("Erro ao logar");
     }
+});
+
+app.post('/profile', function(req, res) {
+    let conteudo = getObj('conteudo.json');
+    console.log('id_user: '+id_user);
+    conteudo = conteudo.filter(obj => obj.id_user == id_user);
+    console.log("conteudo filtrado: %o", conteudo);
+    res.render('perfil',{name:user,idUser:id_user,listaConteudo:conteudo}) ;
+    res.render('perfil.ejs');
 });
 
 server.listen(process.env.PORT, process.env.IP);
@@ -117,7 +137,7 @@ var getObj = function (path){
         obj = [...obj,new_obj];
     }
     
-    console.log("my object: %o", obj);
+    console.log("GET OBJ: %o", obj);
 
     return obj;
 }

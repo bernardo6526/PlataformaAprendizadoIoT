@@ -267,6 +267,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
   }
   
   .list li.active {
@@ -528,5 +529,13 @@
 
   form {
     display: inline;
+  }
+
+  .fit {
+    width: 100%;
+  }
+
+  .center{
+    text-align: center;
   }
   
