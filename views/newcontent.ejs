@@ -41,27 +41,31 @@
     <h1 class="blockLabel center"><%= (typeof name != "undefined" ? name : "") %></h1>
   </nav>
 
-  <div id="telaInicial" class="component">
+  <div id="newcontent" class="component">
     <div class="componentHeader">
-      <form method="post" action="/newcontent">
-      <h1 class="componentTitle mvLeft2">Seus conteúdos
-      <button id="addConteudo" class="button primary mvRight3">
-        <img src="./imagens/plus1.png" />
-      </button>
-    </h1>
-    </div>
-    </div>
+        <h1>Adicionar conteúdo</h1>
+    </div>    
     <div class="componentContent">
-      <ul class="list mt4" id="listaConteudo">
-        <%  
-            (typeof listaConteudo != "undefined" ? listaConteudo : "")
-            listaConteudo.forEach((item) => { %>
-            <li>
-                <img src="imagens\conteudo\conteudo<%=item.id%>.jpg" class = "thumb"/>
-                <label class="blockLabel"><%= item.nome %></label>
-            </li>
-        <% }) %>
-      </ul>
-      </div>
+        <form method="post" action="/savecontent">
+            <div class="field mvLeft3" id="divEmail">
+                <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
+                <input id="email" type="text" autocomplete="off" value="" placeholder="Título" name="titulo" required/>
+            </div>
+            <div class="field mvLeft3" id="divUsername">
+                <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
+                <select id="tipo" name="tipo" required>
+                    <option value="" disabled selected>Tipo</option>
+                    <option value="video">Vídeo</option>
+                    <option value="artigo">Artigo</option>
+                    <option value="ferramenta">Ferramenta</option>
+                </select>
+            </div>
+            <div class="field mvLeft3" id="divUsername">
+                <label class="fixed" id="lblItem" for="inputNovaTarefa"></label>
+                <input id="username" type="text" autocomplete="off" value="" placeholder="Conteúdo" name="conteudo" required/>
+            </div>
+            <input type="submit" id="btnSalvar" class="button primary mvRight5" value="Salvar">
+        </form>    
     </div>
+  </div>
 </body>

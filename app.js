@@ -119,6 +119,35 @@ app.post('/profile', function(req, res) {
     res.render('perfil.ejs');
 });
 
+app.post('/newcontent', function(req, res) {
+    console.log('CONTENT: '+user);
+    res.render('newcontent',{name:user,idUser:id_user}) ;
+    res.render('newcontent.ejs');
+});
+
+app.post('/savecontent', function(req, res) {
+    let conteudo = {
+        id: Math.random().toString().replace('0.', ''),
+        id_user: id_user, 
+        nome: req.body.titulo,
+        conteudo: req.body.conteudo,
+        tipo: req.body.tipo, 
+    };
+
+    let obj = getObj('conteudo.json');    
+    obj = [...obj,conteudo];
+
+    console.log("my object: %o", obj);
+
+    let data = JSON.stringify(conteudo);
+
+    fs.appendFile('./db/conteudo.json', data+"\n", function (err) {
+        if (err) throw err;               console.log('Conteudo Salvo');
+    });
+    //conteudo = conteudo.filter(obj => obj.id_user == id_user);
+    res.redirect(307,'/profile');
+});
+
 server.listen(process.env.PORT, process.env.IP);
 
 var teste = function (){

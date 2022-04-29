@@ -243,6 +243,16 @@
     border: thin solid #dce5e8;
     border-radius: 0.35rem;
   }
+
+  .field select {
+    flex: 1;
+    height: 2rem;
+    padding: 0.3rem 0.7rem;
+    color: #000;
+    background: #fff;
+    border: thin solid #dce5e8;
+    border-radius: 0.35rem;
+  }
   
   .field input.valid {
     border: thin solid #2a9d8f;
