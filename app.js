@@ -1,4 +1,5 @@
 const fs = require('fs')
+const request = require('request');
 
 // Imports
 const express = require('express')
@@ -106,6 +107,8 @@ app.post('/login', function(req, res) {
         res.render('home.ejs');
         console.log("USUARIO LOGADO: "+user);
     }else{
+        console.log("[ERRO] logado ="+logado);
+        console.log("[ERRO] logado ="+user)
         console.log("Erro ao logar");
     }
 });
@@ -115,6 +118,7 @@ app.post('/profile', function(req, res) {
     console.log('id_user: '+id_user);
     conteudo = conteudo.filter(obj => obj.id_user == id_user);
     console.log("conteudo filtrado: %o", conteudo);
+    console.log("name:"+user+"/idUser:"+id_user);
     res.render('perfil',{name:user,idUser:id_user,listaConteudo:conteudo}) ;
     res.render('perfil.ejs');
 });
@@ -146,6 +150,14 @@ app.post('/savecontent', function(req, res) {
     });
     //conteudo = conteudo.filter(obj => obj.id_user == id_user);
     res.redirect(307,'/profile');
+    
+    //--------------------------------redirect profile
+    //conteudo = conteudo.filter(obj => obj.id_user == id_user);
+    //console.log("conteudo filtrado: %o", conteudo);
+    //console.log("name:"+user+"/idUser:"+id_user);
+    //res.render('perfil',{name:user,idUser:id_user,listaConteudo:conteudo}) ;
+    //res.render('perfil.ejs');
+    //-----------------------------------
 });
 
 server.listen(process.env.PORT, process.env.IP);
@@ -178,6 +190,4 @@ var saveJSON = function (obj,path){
         if (err) throw err;               console.log('Obj Salvo em:'+path);
     });
 }
-
-
 
