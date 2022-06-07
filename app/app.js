@@ -10,23 +10,9 @@ var https = require('https');
 const { Console } = require('console');
 var server = https.createServer(app);
 
-const NodeCache = require( "node-cache" );
-const myCache = new NodeCache();
-
 var logado = false;
 var user;
 var id_user;
-
-if (typeof localStorage === "undefined" || localStorage === null) {
-    var LocalStorage = require('node-localstorage').LocalStorage;
-    localStorage = new LocalStorage('./session');
-    console.log('cache reset');
-}else{
-    logado = localStorage.getItem('logado');
-    user = localStorage.getItem('user');
-    id_user = localStorage.getItem('id_user');
-    console.log('logado/user/id_user'+' '+logado+'/'+user+'/'+id_user);
-}
 
 
 // Static Files
@@ -121,23 +107,6 @@ app.post('/login', function(req, res) {
         res.render('home',{name:user,listaConteudo:getObj('conteudo.json')}) ;
         res.render('home.ejs');
         console.log("USUARIO LOGADO: "+user);
- 
-        let loginSession = {
-            logado: logado,
-            user: user, 
-            id_user: id_user
-        };
-
-        //cria sessao na cache
-        console.log("SESSION CRIADA:"+loginSession.user);
-
-        localStorage.setItem('logado', logado);
-        localStorage.setItem('user', user);
-        localStorage.setItem('id_user', id_user);
-        
-        console.log('credentials='+localStorage.getItem('logado'));
-
-
 
     }else{
         console.log("[ERRO] logado ="+logado);
@@ -148,14 +117,6 @@ app.post('/login', function(req, res) {
 });
 
 app.post('/profile', function(req, res) {
-
-    logado = localStorage.getItem('logado');
-    user = localStorage.getItem('user');
-    id_user = localStorage.getItem('id_user');
-
-    console.log('logado/user/id_user'+' '+logado+'/'+user+'/'+id_user);
-
-
     let conteudo = getObj('conteudo.json');
     console.log('id_user: '+id_user);
     conteudo = conteudo.filter(obj => obj.id_user == id_user);
@@ -190,21 +151,10 @@ app.post('/savecontent', function(req, res) {
     fs.appendFile('../db/conteudo.json', data+"\n", function (err) {
         if (err) throw err;               console.log('Conteudo Salvo');
     });
-    //conteudo = conteudo.filter(obj => obj.id_user == id_user);
-    res.redirect(307,'/profile');
-    
-    //--------------------------------redirect profile
-    //console.log('------------------------------redirect profile');
-    //let conteudo2 = getObj('conteudo.json');
-    //console.log('id_user: '+id_user);
-    //conteudo2 = conteudo2.filter(obj => obj.id_user == id_user);
-    //console.log("conteudo filtrado: %o", conteudo2);
-    //console.log("name:"+user+"/idUser:"+id_user);
-    //res.render('perfil',{name:user,idUser:id_user,listaConteudo:conteudo2}) ;
-    //res.render('perfil.ejs');
-    //console.log('------------------------------redirect profile');
 
-    //-----------------------------------
+    
+    res.redirect(307,'/profile');
+
 });
 
 server.listen(process.env.PORT, process.env.IP);

@@ -55,7 +55,7 @@
       <ul class="list mt4" id="listaConteudo">
         <%  
             (typeof listaConteudo != "undefined" ? listaConteudo : "")
-            listaConteudo.forEach((item) => { %>
+            listaConteudo.slice().reverse().forEach((item) => { %>
             <li>
                 <img src="imagens\conteudo\conteudo<%=item.id%>.jpg" class = "thumb"/>
                 <label class="blockLabel"><%= item.nome %></label>
