@@ -1,5 +1,5 @@
-addconteudo
-conteudo
-outroperfil
-comentario
-nota
+[x]addconteudo
+[]conteudo
+[]outroperfil
+[]comentario
+[]nota

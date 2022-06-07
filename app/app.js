@@ -126,6 +126,16 @@ app.post('/profile', function(req, res) {
     res.render('perfil.ejs');
 });
 
+app.post('/content', function(req, res) {
+    let conteudo = getObj('conteudo.json');
+    console.log('id_user: '+id_user);
+    conteudo = conteudo.filter(obj => obj.id_user == id_user);
+    //console.log("conteudo filtrado: %o", conteudo);
+    console.log("name:"+user+"/idUser:"+id_user);
+    res.render('content',{name:user,idUser:id_user,listaConteudo:conteudo}) ;
+    res.render('content.ejs');
+});
+
 app.post('/newcontent', function(req, res) {
     console.log('CONTENT: '+user);
     res.render('newcontent',{name:user,idUser:id_user}) ;
@@ -152,7 +162,7 @@ app.post('/savecontent', function(req, res) {
         if (err) throw err;               console.log('Conteudo Salvo');
     });
 
-    
+
     res.redirect(307,'/profile');
 
 });

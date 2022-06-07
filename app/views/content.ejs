@@ -30,7 +30,7 @@
             <button id="tab1" class="button tab" for="telaInicial">Início</button>
         </div>
       </form>
-      <form class = "fit" method="post" action="/content">
+      <form class = "fit" method="post" action="/login">
         <div class="buttonGroup">   
           <button id="tab2" class="button tab" for="telaPerfil">Perfil</button>
         </div>
@@ -38,14 +38,20 @@
   </nav>
 
   <nav id ="nav2" class="navBar">
-    <h1 class="blockLabel center">Olá <%= (typeof name != "undefined" ? name : "") %></h1>
+    <h1 class="blockLabel center"><%= (typeof name != "undefined" ? name : "") %></h1>
   </nav>
 
   <div id="telaInicial" class="component">
     <div class="componentHeader">
-      <h1 class="componentTitle mvLeft2">Início</h1>
+      <h1 class="blockLabel center"><%= (typeof title != "undefined" ? title : "Title") %></h1>
+    </div>
     </div>
     <div class="componentContent">
+      <% if(false){ %>
+        <h1 class="blockLabel center">foo</h1>
+      <% } else{ %>  
+        <h1 class="blockLabel center">>bar</h1>
+     <% } %>
       <ul class="list mt4" id="listaConteudo">
         <%  
             (typeof listaConteudo != "undefined" ? listaConteudo : "")
