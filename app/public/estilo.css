@@ -507,6 +507,13 @@
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
   }
+
+  .blockLabel2{
+    display: block; /* add this */
+    width: 100%;
+    padding-top: 0.1rem;
+    padding-bottom: 0.1rem;
+  }
   
   .alterarInput{
     display: block; /* add this */
@@ -548,4 +555,13 @@
   .center{
     text-align: center;
   }
+
+  .justify{
+    text-align: justify;
+    text-justify: inter-word;
+  }
   
+  iframe{
+    width: 20.5rem;
+    height: 14rem;
+  }

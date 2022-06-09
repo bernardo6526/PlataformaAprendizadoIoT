@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="/imagens/icones/cookiejarfavicon.ico" />
   <link rel="stylesheet" href="./estilo.css" />
   <script src="./script.js"></script>
-  
+
 
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="blue">
@@ -24,44 +24,72 @@
     <div class="cookieImg"><img src="imagens/icones/cookiejar72.png"></div>
     <div class="appName left">Plataforma Aprendizado</div>
   </header>
-  <nav id ="nav" class="navBar bottom">
-      <form class = "fit" method="post" action="/login">
-        <div class="buttonGroup">
-            <button id="tab1" class="button tab" for="telaInicial">Início</button>
-        </div>
-      </form>
-      <form class = "fit" method="post" action="/login">
-        <div class="buttonGroup">   
-          <button id="tab2" class="button tab" for="telaPerfil">Perfil</button>
-        </div>
-      </form>
+  <nav id="nav" class="navBar bottom">
+    <form class="fit" method="post" action="/login">
+      <div class="buttonGroup">
+        <button id="tab1" class="button tab" for="telaInicial">Início</button>
+      </div>
+    </form>
+    <form class="fit" method="post" action="/login">
+      <div class="buttonGroup">
+        <button id="tab2" class="button tab" for="telaPerfil">Perfil</button>
+      </div>
+    </form>
   </nav>
 
-  <nav id ="nav2" class="navBar">
-    <h1 class="blockLabel center"><%= (typeof name != "undefined" ? name : "") %></h1>
+  <nav id="nav2" class="navBar">
+    <h1 class="blockLabel center">
+      <%= (typeof name !="undefined" ? name : "" ) %>
+    </h1>
   </nav>
 
   <div id="telaInicial" class="component">
-    <div class="componentHeader">
-      <h1 class="blockLabel center"><%= (typeof title != "undefined" ? title : "Title") %></h1>
-    </div>
-    </div>
+
     <div class="componentContent">
-      <% if(false){ %>
-        <h1 class="blockLabel center">foo</h1>
-      <% } else{ %>  
-        <h1 class="blockLabel center">>bar</h1>
-     <% } %>
-      <ul class="list mt4" id="listaConteudo">
-        <%  
-            (typeof listaConteudo != "undefined" ? listaConteudo : "")
-            listaConteudo.slice().reverse().forEach((item) => { %>
-            <li>
-                <img src="imagens\conteudo\conteudo<%=item.id%>.jpg" class = "thumb"/>
-                <label class="blockLabel"><%= item.nome %></label>
-            </li>
-        <% }) %>
-      </ul>
-      </div>
+      <%# --------------- case video ----------------%>
+        <% if("video"=="video" ){ %>
+          <h1 class="blockLabel center">
+            <%= (typeof title !="undefined" ? title : "Title" ) %>
+          </h1>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/qNHydTYkfcg?controls=0"
+            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
+              clipboard-write; 
+              encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+
+          <%# --------------- case video ----------------%>
+            <% } else{ %>
+              <h1 class="blockLabel center">>bar</h1>
+              <% } %>
+
+                <form method="post" action="/newcontent">
+                  <h1 class="componentTitle mvLeft2">Comentários
+                    <button id="addConteudo" class="button primary mvRight3">
+                      <img src="./imagens/plus1.png" />
+                    </button>
+                  </h1>
+                </form>
+
+                <ul class="list mt1" id="listaConteudo">
+                  <% (typeof listaConteudo !="undefined" ? listaConteudo : "" )
+                    listaConteudo.slice().reverse().forEach((item)=> { %>
+                    <li>
+                      <label class="blockLabel2">
+                        <h1 class="center">
+                          <%= item.nome %>
+                        </h1>
+                        <p class="justify">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </p>
+                      </label>
+
+                    </li>
+                  <% }) %>
+                </ul>
     </div>
+  </div>
 </body>
