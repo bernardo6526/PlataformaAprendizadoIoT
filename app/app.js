@@ -128,11 +128,23 @@ app.post('/profile', function(req, res) {
 
 app.post('/content', function(req, res) {
     let conteudo = getObj('conteudo.json');
-    console.log('id_user: '+id_user);
-    conteudo = conteudo.filter(obj => obj.id_user == id_user);
-    //console.log("conteudo filtrado: %o", conteudo);
-    console.log("name:"+user+"/idUser:"+id_user);
-    res.render('content',{name:user,idUser:id_user,listaConteudo:conteudo}) ;
+    let usuario = getObj('usuario.json');
+    let comentario = getObj('comentario.json');
+
+
+    conteudo = conteudo.filter(obj => obj.id == req.body.idConteudo);
+
+    let fkUser;
+    let fkConteudo;
+    conteudo.forEach((item)=> {
+        fkUser = item.id_user;
+        fkConteudo = item.id;
+    });
+
+    usuario = usuario.filter(obj => obj.id == fkUser);
+    comentario = comentario.filter(obj => obj.id_conteudo == fkConteudo);
+
+    res.render('content',{name:user,idUser:id_user,listaConteudo:conteudo,listaUsuario:usuario,listaComentario:comentario});
     res.render('content.ejs');
 });
 

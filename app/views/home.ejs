@@ -30,7 +30,7 @@
             <button id="tab1" class="button tab" for="telaInicial">Início</button>
         </div>
       </form>
-      <form class = "fit" method="post" action="/content">
+      <form class = "fit" method="post" action="/profile">
         <div class="buttonGroup">   
           <button id="tab2" class="button tab" for="telaPerfil">Perfil</button>
         </div>
@@ -50,10 +50,15 @@
         <%  
             (typeof listaConteudo != "undefined" ? listaConteudo : "")
             listaConteudo.slice().reverse().forEach((item) => { %>
-            <li>
-                <img src="imagens\conteudo\conteudo<%=item.id%>.jpg" class = "thumb"/>
-                <label class="blockLabel"><%= item.nome %></label>
-            </li>
+              <form class = "fit" method="post" action="/content">
+                <button>
+                  <li>
+                    <img src="imagens\conteudo\conteudo<%=item.id%>.jpg" class = "thumb"/>
+                    <label class="blockLabel"><%= item.nome %></label>
+                    <input id="username" type="text" autocomplete="off" value="<%=item.id%>" name="idConteudo" hidden/>
+                  </li>
+                </button>
+              </form>
         <% }) %>
       </ul>
       </div>

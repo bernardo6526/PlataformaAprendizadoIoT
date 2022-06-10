@@ -47,21 +47,27 @@
 
     <div class="componentContent">
       <%# --------------- case video ----------------%>
-        <% if("video"=="video" ){ %>
-          <h1 class="blockLabel center">
-            <%= (typeof title !="undefined" ? title : "Title" ) %>
-          </h1>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/qNHydTYkfcg?controls=0"
-            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
-              clipboard-write; 
-              encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-          </iframe>
+      <% (typeof listaConteudo !="undefined" ? listaConteudo : "" )
+        listaConteudo.slice().reverse().forEach((item)=> { %>
+          <h1 class="blockLabel2 center"><%=item.nome%></h1>
+          <% (typeof listaUsuario !="undefined" ? listaUsuario : "" )
+            listaUsuario.slice().reverse().forEach((item)=> { %>
+            <h3 class="blockLabel2 center">Postado por: <%=item.username%></h3>
+          <% }) %>
+          <% if("video"=="video" ){ %>
+            <iframe width="560" height="315" src="<%=item.conteudo%>"
+              title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
+                clipboard-write; 
+                encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+            </iframe>
 
           <%# --------------- case video ----------------%>
-            <% } else{ %>
+          <% } else{ %>
               <h1 class="blockLabel center">>bar</h1>
               <% } %>
+      <% }) %>
 
+       <%# --------------- comments ----------------%>
                 <form method="post" action="/newcontent">
                   <h1 class="componentTitle mvRight3">Comentários
                     <button id="addConteudo" class="button primary mvRight3">
@@ -70,20 +76,16 @@
                   </h1>
                 </form>
 
-                <ul class="list mt1" id="listaConteudo">
-                  <% (typeof listaConteudo !="undefined" ? listaConteudo : "" )
-                    listaConteudo.slice().reverse().forEach((item)=> { %>
+                <ul class="list mt1" id="listaComentario">
+                  <% (typeof listaComentario !="undefined" ? listaComentario : "" )
+                    listaComentario.slice().reverse().forEach((item)=> { %>
                     <li>
                       <label class="blockLabel2">
                         <h1 class="center">
-                          <%= item.nome %>
+                          <%= item.username %>
                         </h1>
                         <p class="justify">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                          <%= item.comentario %>
                         </p>
                       </label>
 

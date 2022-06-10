@@ -57,10 +57,15 @@
         <%  
             (typeof listaConteudo != "undefined" ? listaConteudo : "")
             listaConteudo.slice().reverse().forEach((item) => { %>
-            <li>
-                <img src="imagens\conteudo\conteudo<%=item.id%>.jpg" class = "thumb"/>
-                <label class="blockLabel"><%= item.nome %></label>
-            </li>
+              <form class = "fit" method="post" action="/content">
+                <button>
+                  <li>
+                    <img src="imagens\conteudo\conteudo<%=item.id%>.jpg" class = "thumb"/>
+                    <label class="blockLabel"><%= item.nome %></label>
+                    <input id="username" type="text" autocomplete="off" value="<%=item.id%>" name="idConteudo" hidden/>
+                  </li>
+                </button>
+              </form>
         <% }) %>
       </ul>
       </div>
